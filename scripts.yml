@@ -8,9 +8,13 @@
 #   - .env
 
 scripts:
-  main:
-    desc: Runs main script
-    cmd: main.ts
+  dev:
+    desc: Starts dev mode
+    cmd: deno run -A --watch --no-check main.ts
+
+  start:
+    desc: Starts  main
+    cmd: deno run -A main.ts
 
   inspect:
     desc: Runs main script
@@ -19,20 +23,32 @@ scripts:
 
   server:
     desc: Starts deploy server
-    cmd: deno run  --watch server.ts
-    # cmd: deployctl run  --watch server.ts
-    allow:
-      - read
-      - net
-      - env
+    cmd: deno run  server.ts
+
+  test:
+    desc: Runs the tests
+    cmd: deno test -A
+
+  test-ci:
+    desc: Runs the tests
+    cmd:
+      pll:
+        - timeout 17 vr server || exit 0
+        - sleep 1 && vr test --no-check
+    # gitHook: pre-push
+
+
+  cache:
+    cmd: deno cache **/*.ts
+
 
   docs:
     - echo "visit https://doc.deno.land/builtin/stable"
     - google-chrome https://doc.deno.land/builtin/stable || sh $BROWSER https://doc.deno.land/builtin/stable
 
-  deps:
-    desc: Update dependencies with ensuring pass tests
-    cmd: udd deps.ts --test="vr test"
+  update:
+    desc: Update dependencies ensuring pass tests
+    cmd: deno run -A https://deno.land/x/udd/main.ts  **/*.[tj]s* --test="vr test-ci"
 
   lint:
     desc: Runs lint
@@ -64,12 +80,6 @@ scripts:
           echo "$FILES" > .stagedFiles
     gitHook: pre-commit
 
-
-
-  test:
-    desc: Runs the tests
-    cmd: deno test --reload
-    gitHook: pre-push
 
   cov:
     desc: Shows uncovered lists
