@@ -97,6 +97,8 @@ scripts:
       - vr lint
       - vr fmt --check
       - vr test
+    gitHook: pre-push
+
 
   commitlint:
     # cmd: echo --- ${GIT_ARGS} ---
