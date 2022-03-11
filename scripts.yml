@@ -6,6 +6,8 @@
 
 # envFile:
 #   - .env
+env:
+  DENO_DIR: .cache
 
 scripts:
   dev:
@@ -27,20 +29,18 @@ scripts:
 
   test:
     desc: Runs the tests
-    cmd: deno test -A --doc
+    cmd: deno test -A --doc --ignore=.cache/**
 
   test-ci:
     desc: Runs the tests
     cmd:
       pll:
         - timeout 17 vr server || exit 0
-        - sleep 1 && vr test --no-check
+        - sleep 1 && vr test --no-prompt
     # gitHook: pre-push
 
 
   cache:
-    env:
-      DENO_DIR: .cache
     cmd: deno cache --reload --lock=lock.json --lock-write **/*.[jt]s
 
 
