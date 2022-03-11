@@ -16,12 +16,12 @@
   "https://deno.land/x/commit@0.1.5/mod.ts": "e5e963be903fb43f0d148caa9cbbac9ba4ee78359fa350d999c25d4fd9a629f9",
   "https://deno.land/x/commit@0.1.5/parser.ts": "6fe6fd60b0080a60a4c9c6f43ab871fbbcc98063359ef523c70bc0dbc472a261",
   "https://deno.land/x/commit@0.1.5/regex.ts": "d1614c739773993ab113ee2847195e45097437377c3047fc750738a31b68711a",
-  "https://deno.land/x/garn_logger@0.0.13/deps.ts": "c10ead1a5b6c7d6a7981fd3ef4ba8fdd435dfb305063fc7f8e7ce91a24ca4b81",
-  "https://deno.land/x/garn_logger@0.0.13/mod.ts": "f1783d53677b5e34c67c0ee498424f3ad92e3648324cd8d7229404eba905d785",
-  "https://deno.land/x/garn_logger@0.0.13/src/constants.ts": "29fa4cf8e12bc602fae69fe6d6b2998993e53e4dd7143271cf0a99383703bd4d",
-  "https://deno.land/x/garn_logger@0.0.13/src/logger.ts": "8f8461230e13a589e90b89a5205379e713ff18de7225422a24b2bb78cee158b2",
-  "https://deno.land/x/garn_logger@0.0.13/src/middleware.ts": "3fb3b72d95d2fd2fb7d4c0376e1f7fe66d0b5563e1a7d955dee3b606476a3f62",
-  "https://deno.land/x/garn_logger@0.0.13/src/middleware/format_to_ansi_colors.ts": "81719730baccb51f9594dfbc86079c0693b7ece9208e1aacf17992549f376cd9",
-  "https://deno.land/x/garn_logger@0.0.13/src/middleware/transport_to_console.ts": "742d4c7d8fe37258a1c560fd851b1dc492040ff2d8aaee346a9466aa2654f9bb",
-  "https://deno.land/x/garn_logger@0.0.13/src/types.ts": "9bba5fa5564656449ec17d0a1ba0076f7e86a212380febf4ef50ca38e35cac00"
+  "https://deno.land/x/garn_logger@0.0.12/deps.ts": "c10ead1a5b6c7d6a7981fd3ef4ba8fdd435dfb305063fc7f8e7ce91a24ca4b81",
+  "https://deno.land/x/garn_logger@0.0.12/mod.ts": "f1783d53677b5e34c67c0ee498424f3ad92e3648324cd8d7229404eba905d785",
+  "https://deno.land/x/garn_logger@0.0.12/src/constants.ts": "29fa4cf8e12bc602fae69fe6d6b2998993e53e4dd7143271cf0a99383703bd4d",
+  "https://deno.land/x/garn_logger@0.0.12/src/logger.ts": "8f8461230e13a589e90b89a5205379e713ff18de7225422a24b2bb78cee158b2",
+  "https://deno.land/x/garn_logger@0.0.12/src/middleware.ts": "3fb3b72d95d2fd2fb7d4c0376e1f7fe66d0b5563e1a7d955dee3b606476a3f62",
+  "https://deno.land/x/garn_logger@0.0.12/src/middleware/format_to_ansi_colors.ts": "0ab65d7dbda16fd800c70709282663bc6406dbc755c41126dc79930a3e554ced",
+  "https://deno.land/x/garn_logger@0.0.12/src/middleware/transport_to_console.ts": "742d4c7d8fe37258a1c560fd851b1dc492040ff2d8aaee346a9466aa2654f9bb",
+  "https://deno.land/x/garn_logger@0.0.12/src/types.ts": "9bba5fa5564656449ec17d0a1ba0076f7e86a212380febf4ef50ca38e35cac00"
 }
