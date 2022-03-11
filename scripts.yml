@@ -39,16 +39,14 @@ scripts:
 
 
   cache:
-    cmd: deno cache **/*.ts
+    cmd: deno cache --reload --lock=lock.json --lock-write **/*.[jt]s
 
-
-  docs:
-    - echo "visit https://doc.deno.land/builtin/stable"
-    - google-chrome https://doc.deno.land/builtin/stable || sh $BROWSER https://doc.deno.land/builtin/stable
 
   update:
     desc: Update dependencies ensuring pass tests
-    cmd: deno run -A https://deno.land/x/udd/main.ts  **/*.[tj]s* --test="vr test-ci"
+    cmd:
+      - deno run -A https://deno.land/x/udd/main.ts  **/*.[tj]s* --test="vr test-ci"
+      - vr cache
 
   lint:
     desc: Runs lint
@@ -57,6 +55,10 @@ scripts:
   fmt:
     desc: Runs format
     cmd: deno fmt --ignore=cov_profile
+
+  docs:
+    - echo "visit https://doc.deno.land/builtin/stable"
+    - google-chrome https://doc.deno.land/builtin/stable || sh $BROWSER https://doc.deno.land/builtin/stable
 
 
   pre-commit:
@@ -91,6 +93,7 @@ scripts:
       - which genhtml || sudo apt install lcov
       - genhtml -o coverage/html coverage/coverage.lcov
       - deno run -A https://deno.land/std/http/file_server.ts coverage/html
+
   ci:
     desc: Runs lint, check format and test
     cmd:

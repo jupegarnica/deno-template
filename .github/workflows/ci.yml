@@ -1,20 +1,35 @@
+# https://deno.land/manual@v1.19.3/continuous_integration#speeding-up-deno-pipelines
 name: ci
-
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    # branches:
+    #   - '**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    # runs-on: ${{ matrix.os }}
+    # strategy:
+    #   matrix:
+    #     os: [ ubuntu-20.04, macos-11, windows-2019 ]
+    env:
+      VR_HOOKS: "false"
+      DENO_DIR: .deno/cache
     steps:
       - uses: actions/checkout@master
+      - name: Cache Deno dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.DENO_DIR }}
+          key: ${{ hashFiles('lock.json') }}
+
       - uses: denoland/setup-deno@v1
       - uses: jurassiscripts/setup-velociraptor@v1
       # - name: Create env file
       #   run: |
       #     touch .env
       #     echo SAMPLE_TOKEN=sample_token >> .env
-      - run: vr cache
       - name: Run CI
-        env:
-          VR_HOOKS: "false"
         run: vr ci
