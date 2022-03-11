@@ -48,7 +48,7 @@ scripts:
   update:
     desc: Update dependencies ensuring pass tests
     cmd:
-      - deno run -A https://deno.land/x/udd/src/main.ts  **/*.[tj]s* --test="vr test-ci"
+      - deno run -A https://deno.land/x/udd/main.ts  **/*.[tj]s* --test="vr test-ci"
       - vr cache
 
   lint:
