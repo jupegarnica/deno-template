@@ -1,4 +1,4 @@
-import { ConnInfo, serve } from "./deps.ts";
+import { ConnInfo, serve } from "../deps.ts";
 
 function isNetAddr(addr: Deno.Addr): addr is Deno.NetAddr {
   return Object.hasOwn(addr, "hostname");

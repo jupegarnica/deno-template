@@ -12,20 +12,21 @@ env:
 scripts:
   dev:
     desc: Starts dev mode
-    cmd: deno run -A --watch --no-check main.ts
+    cmd: deno run -A --watch --no-check src/main.ts
 
   start:
     desc: Starts  main
-    cmd: deno run -A main.ts
+    cmd: deno run -A src/main.ts
 
-  inspect:
+  debug:
     desc: Runs main script
-    cmd: main.ts
+    cmd: src/main.ts
     inspectBrk: 127.0.0.1:9229
+    inspect: 127.0.0.1:9229
 
   server:
     desc: Starts deploy server
-    cmd: deno run  server.ts
+    cmd: deno run  src/server.ts
 
   test:
     desc: Runs the tests
@@ -47,7 +48,7 @@ scripts:
   update:
     desc: Update dependencies ensuring pass tests
     cmd:
-      - deno run -A https://deno.land/x/udd/main.ts  **/*.[tj]s* --test="vr test-ci"
+      - deno run -A https://deno.land/x/udd/src/main.ts  **/*.[tj]s* --test="vr test-ci"
       - vr cache
 
   lint:
@@ -62,6 +63,11 @@ scripts:
     - echo "visit https://doc.deno.land/builtin/stable"
     - google-chrome https://doc.deno.land/builtin/stable || sh $BROWSER https://doc.deno.land/builtin/stable
 
+  build_npm:
+    desc: |
+     Builds the package for npm
+     docs: https://deno.land/x/dnt
+    cmd: deno run -A _scripts/build_npm.ts
 
   pre-commit:
     desc: Lints and formats staged files
@@ -107,7 +113,7 @@ scripts:
 
   commitlint:
     # cmd: echo --- ${GIT_ARGS} ---
-    cmd: deno run --allow-read="./.git" commitlint.ts
+    cmd: deno run --allow-read="./.git" _scripts/commitlint.ts
     gitHook: commit-msg
   # tag:
   #   cmd: deno run -A --unstable https://deno.land/x/release/release.ts patch
