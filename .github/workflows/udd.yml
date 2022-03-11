@@ -15,15 +15,14 @@ on:
 jobs:
   udd:
     runs-on: ubuntu-latest
+    env:
+      VR_HOOKS: "false"
     steps:
       - uses: actions/checkout@master
       - uses: denoland/setup-deno@v1
       - uses: jurassiscripts/setup-velociraptor@v1
-      # - run: vr cache
       - run: vr update
-      # - run: vr ci
       - name: Create Pull Request
-      # // TODO: MAKE THIS WORK
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: "chore(deps): update deno dependencies"
