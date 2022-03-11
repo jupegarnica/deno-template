@@ -39,6 +39,8 @@ scripts:
 
 
   cache:
+    env:
+      DENO_DIR: .cache
     cmd: deno cache --reload --lock=lock.json --lock-write **/*.[jt]s
 
 
@@ -50,11 +52,11 @@ scripts:
 
   lint:
     desc: Runs lint
-    cmd: deno lint --ignore=cov_profile
+    cmd: deno lint --ignore=coverage,.cache
 
   fmt:
     desc: Runs format
-    cmd: deno fmt --ignore=cov_profile
+    cmd: deno fmt --ignore=coverage,.cache
 
   docs:
     - echo "visit https://doc.deno.land/builtin/stable"
