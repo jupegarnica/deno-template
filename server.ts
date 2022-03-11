@@ -10,7 +10,7 @@ if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
 }
 
 const handler = async (request: Request, conn: ConnInfo) => {
-  const { href, origin, host, pathname, hash, search } = new URL(request.url);
+  // const { href, origin, host, pathname, hash, search } = new URL(request.url);
 
   const readme = await Deno.readTextFile("./README.md");
 

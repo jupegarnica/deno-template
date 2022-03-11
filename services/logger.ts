@@ -1,5 +1,5 @@
-import logger from "https://deno.land/x/garn_logger/mod.ts";
+import logger from "https://deno.land/x/garn_logger@0.0.13/mod.ts";
 
-logger.setFilter(Deno.env.get("LOG_LEVEL") || "debug");
+logger.setFilter(Deno.env.get("LOG_LEVEL") || "info");
 
-export { logger };
+export default logger
