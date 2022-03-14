@@ -1,8 +1,10 @@
+import { assert } from "../dev_deps.ts";
 Deno.test({
-  name: "demo",
+  name: "Demo",
   ignore: false,
   only: false,
   fn: () => {
-    console.log("there is no test now");
+    console.log("There is no test now");
+    assert(true);
   },
 });

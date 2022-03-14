@@ -1,31 +1,79 @@
 import { ConnInfo, serve } from "../deps.ts";
-
-function isNetAddr(addr: Deno.Addr): addr is Deno.NetAddr {
-  return Object.hasOwn(addr, "hostname");
-}
-
+import { createReporter } from "https://deno.land/x/g_a@0.1.2/mod.ts";
+import { CSS, render } from "https://deno.land/x/gfm@0.1.20/mod.ts";
 const port = 8080;
+
 if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
   console.log(`HTTP server listening on http://localhost:${port}`);
 }
 
-const handler = async (request: Request, conn: ConnInfo) => {
-  // const { href, origin, host, pathname, hash, search } = new URL(request.url);
+const ga = createReporter({
+  id: Deno.env.get("GA_UA") || "UA-XXXXX-Y",
+});
+function isNetAddr(addr: Deno.Addr): addr is Deno.NetAddr {
+  return Object.hasOwn(addr, "hostname");
+}
 
-  const readme = await Deno.readTextFile("./README.md");
+const html = String.raw;
+const toHtml = ({ CSS, body }: { CSS: string; body: string }) =>
+  html`
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        body {
+          background-color: var(--color-canvas-default, initial);
+        }
+        main {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 1em;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        ${CSS}
+      </style>
+    </head>
+    <body data-color-mode="auto" data-light-theme="light" data-dark-theme="dark" class="markdown-body" >
+      <main>
+        ${body}
+      </main>
+    </body>
+  </html>
+  `;
 
-  const { localAddr, remoteAddr } = conn;
-  if (!isNetAddr(localAddr) || !isNetAddr(remoteAddr)) {
-    throw new Error("not net addr");
-  }
-  // console.log(`${localAddr.hostname}:${localAddr.port}`);
-  //console.log(`${remoteAddr.hostname}:${remoteAddr.port}`);
-
-  return new Response(readme, {
-    headers: {
+async function handler(req: Request, conn: ConnInfo) {
+  let err;
+  let res: Response;
+  const start = performance.now();
+  try {
+    const { localAddr, remoteAddr } = conn;
+    if (!isNetAddr(localAddr) || !isNetAddr(remoteAddr)) {
+      throw new Error("not net addr");
+    }
+    const headers = {
       "x-local-addr": `${localAddr.hostname}:${localAddr.port}`,
       "x-remote-addr": `${remoteAddr.hostname}:${remoteAddr.port}`,
-    },
-  });
-};
+      "content-type": "text/html",
+    };
+
+    const markdown = await Deno.readTextFile("./README.md");
+    const baseUrl = "/";
+    const body = render(markdown, { baseUrl });
+
+    res = new Response(toHtml({ CSS, body }), {
+      headers,
+    });
+  } catch (e) {
+    err = e;
+  } finally {
+    ga(req, conn, res!, start, err);
+  }
+  return res!;
+}
+
 await serve(handler, { port });

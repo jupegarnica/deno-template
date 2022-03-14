@@ -26,7 +26,8 @@ scripts:
 
   server:
     desc: Starts deploy server
-    cmd: deno run  src/server.ts
+    cmd: deno run --allow-net --allow-env --allow-read=.  src/server.ts
+    noCheck: true
 
   test:
     desc: Runs the tests

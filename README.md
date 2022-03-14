@@ -1,11 +1,6 @@
 # deno-dev-template
 
-[![ci](https://github.com/kawarimidoll/deno-dev-template/workflows/ci/badge.svg)](.github/workflows/ci.yml)
-[![deno.land](https://img.shields.io/badge/deno-%5E1.16.0-green?logo=deno)](https://deno.land)
-[![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
-[![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
-
-my deno template
+My deno template for rapid development.
 
 ## Setup
 
@@ -21,4 +16,4 @@ $ # install hook
 $ vr
 ```
 
-The scripts are defined in [velociraptor.yml](velociraptor.yml).
+The scripts are defined in [scripts.yml](scripts.yml).
