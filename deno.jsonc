@@ -2,7 +2,6 @@
   // curl -O https://config.deno.dev/deno.jsonc
   "lint": {
     "files": {
-      // "include": [],
       "exclude": [
         ".cache",
         ".git",
@@ -42,7 +41,6 @@
     "ci": "deno lint && deno fmt --check && deno task test-ci",
     "release": "sh _scripts/release.sh",
     "tag": "sh _scripts/tag.sh"
-
   }
   // "importMap":"vendor/import_map.json"
 }
