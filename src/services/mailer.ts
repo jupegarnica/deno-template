@@ -1,5 +1,5 @@
 import {
-  quotedPrintableEncode,
+  // quotedPrintableEncode,
   SmtpClient,
 } from "https://deno.land/x/denomailer@0.10.0/mod.ts";
 

@@ -37,11 +37,11 @@
     "files": {
       // "include": [],
       "exclude": [
-        ".cache/**",
-        ".git/**",
+        ".cache",
+        ".git",
+        "coverage",
         "node_modules/**",
-        "vendor/**",
-        "coverage/**"
+        "vendor/**"
       ]
     }
     // "rules": {
