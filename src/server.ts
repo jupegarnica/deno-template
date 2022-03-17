@@ -1,6 +1,5 @@
 import { ConnInfo, serve } from "../deps.ts";
 import { createReporter } from "https://deno.land/x/g_a@0.1.2/mod.ts";
-import { CSS, render } from "https://deno.land/x/gfm@0.1.20/mod.ts";
 const port = 8080;
 
 if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
@@ -62,10 +61,9 @@ async function handler(req: Request, conn: ConnInfo) {
     };
 
     const markdown = await Deno.readTextFile("./README.md");
-    const baseUrl = "/";
-    const body = render(markdown, { baseUrl });
+    const body = markdown
 
-    res = new Response(toHtml({ CSS, body }), {
+    res = new Response(toHtml({ CSS:'', body }), {
       headers,
     });
   } catch (e) {

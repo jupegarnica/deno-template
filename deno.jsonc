@@ -30,7 +30,7 @@
     "dev": "deno run -A --watch --no-check src/main.ts",
     "start": "deno run src/main.ts",
     "debug": "deno run --inspect-brk src/main.ts",
-    "server": "deno run --no-check --allow-net --allow-env --allow-read=.  src/server.ts",
+    "server": "deno run --allow-net --allow-env --allow-read=.  src/server.ts",
     "server-timeout": "timeout 5 deno task server || exit 0",
     "install-hooks": "vr",
     "test": "deno test -A --ignore=.cache --no-prompt",

@@ -1,4 +1,4 @@
-import { parse } from "https://deno.land/std@0.129.0/flags/mod.ts";
+import { parse } from "https://deno.land/std@0.130.0/flags/mod.ts";
 
 const parsedArgs = parse(Deno.args);
 console.dir(parsedArgs);
