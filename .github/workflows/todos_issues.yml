@@ -24,6 +24,7 @@
 #         id: "todo"
 name: TODO bot
 on:
+  workflow_dispatch:
   push:
     branches:
       - '**'
@@ -36,6 +37,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: satackey/action-docker-layer-caching@v0.0.11
       continue-on-error: true
+
     - name: Run tdg-github-action
       uses: ribtoks/tdg-github-action@master
       with:
