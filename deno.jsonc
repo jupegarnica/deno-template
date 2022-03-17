@@ -1,38 +1,5 @@
 {
   // curl -O https://config.deno.dev/deno.jsonc
-  // "compilerOptions": {
-  //   "allowJs": true,
-  //   "allowUnreachableCode": false,
-  //   "allowUnusedLabels": false,
-  //   "checkJs": false,
-  //   "experimentalDecorators": true,
-  //   "jsx": "react",
-  //   "jsxFactory": "React.createElement",
-  //   "jsxFragmentFactory": "React.Fragment",
-  //   // This conflicts with "jsx": "react"
-  //   // "jsxImportSource": "react",
-  //   "keyofStringsOnly": false,
-  //   "lib": [
-  //     "deno.window"
-  //   ],
-  //   "noFallthroughCasesInSwitch": false,
-  //   "noImplicitAny": true,
-  //   "noImplicitReturns": false,
-  //   "noImplicitThis": true,
-  //   // This conflicts with "strict": true
-  //   // "noImplicitUseStrict": true,
-  //   "noStrictGenericChecks": false,
-  //   "noUnusedLocals": false,
-  //   "noUnusedParameters": false,
-  //   "noUncheckedIndexedAccess": false,
-  //   "strict": true,
-  //   "strictBindCallApply": true,
-  //   "strictFunctionTypes": true,
-  //   "strictPropertyInitialization": true,
-  //   "strictNullChecks": true,
-  //   "suppressExcessPropertyErrors": false,
-  //   "suppressImplicitAnyIndexErrors": false
-  // },
   "lint": {
     "files": {
       // "include": [],
@@ -43,16 +10,13 @@
         "node_modules/**",
         "vendor/**"
       ]
+    },
+    "rules": {
+      "exclude": []
     }
-    // "rules": {
-    //   "tags": [],
-    //   "exclude": [],
-    //   "include": []
-    // }
   },
   "fmt": {
     "files": {
-      "include": [],
       "exclude": []
     },
     "options": {
@@ -64,8 +28,21 @@
     }
   },
   "tasks": {
-    "start": "deno run -A src/main.ts",
-    "install-hooks": "vr"
+    "dev": "deno run -A --watch --no-check src/main.ts",
+    "start": "deno run src/main.ts",
+    "debug": "deno run --inspect-brk src/main.ts",
+    "server": "deno run --no-check --allow-net --allow-env --allow-read=.  src/server.ts",
+    "server-timeout": "timeout 5 deno task server || exit 0",
+    "install-hooks": "vr",
+    "test": "deno test -A --ignore=.cache --no-prompt",
+    "test-doc": "deno task test -- --doc",
+    "test-watch": "deno task test -- --watch",
+    "test-ci": "deno task server-timeout & sleep 1 && deno task test",
+    "build-npm": "deno run -A _scripts/build_npm.ts",
+    "ci": "deno lint && deno fmt --check && deno task test-ci",
+    "release": "sh _scripts/release.sh",
+    "tag": "sh _scripts/tag.sh"
+
   }
   // "importMap":"vendor/import_map.json"
 }
