@@ -35,14 +35,20 @@
   // },
   "lint": {
     "files": {
-      "include": [],
-      "exclude": [".cache/**"]
-    },
-    "rules": {
-      "tags": [],
-      "exclude": [],
-      "include": []
+      // "include": [],
+      "exclude": [
+        ".cache/**",
+        ".git/**",
+        "node_modules/**",
+        "vendor/**",
+        "coverage/**"
+      ]
     }
+    // "rules": {
+    //   "tags": [],
+    //   "exclude": [],
+    //   "include": []
+    // }
   },
   "fmt": {
     "files": {
@@ -56,5 +62,10 @@
       "singleQuote": false,
       "proseWrap": "always"
     }
+  },
+  "tasks": {
+    "start": "deno run -A src/main.ts",
+    "install-hooks": "vr"
   }
+  // "importMap":"vendor/import_map.json"
 }

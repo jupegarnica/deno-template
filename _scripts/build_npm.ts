@@ -1,10 +1,10 @@
-import { build } from "https://deno.land/x/dnt@0.7.4/mod.ts";
+import { build } from "https://deno.land/x/dnt@0.22.0/mod.ts";
 
 import {
   dirname,
   fromFileUrl,
   resolve,
-} from "https://deno.land/std@0.117.0/path/mod.ts";
+} from "https://deno.land/std@0.129.0/path/mod.ts";
 
 const baseDir = resolve(dirname(fromFileUrl(import.meta.url)), "..");
 
@@ -15,6 +15,7 @@ await build({
   compilerOptions: {
     sourceMap: true,
   },
+  shims: {},
   package: {
     name: prompt("Package name: ", "deno-npm") || "",
     version: prompt("Package version: ", "0.0.1") || "",
@@ -27,7 +28,7 @@ await build({
     author: {
       name: prompt("Author name: ", "Deno") || "",
       email: prompt("Author email: ", "") || "",
-      url: prompt("Author url: ", "https://deno.land/") || "",
+      url: prompt("Author url: ", "https://deno.land/x") || "",
     },
     repository: {
       type: "git",
