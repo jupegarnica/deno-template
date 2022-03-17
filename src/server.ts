@@ -61,9 +61,9 @@ async function handler(req: Request, conn: ConnInfo) {
     };
 
     const markdown = await Deno.readTextFile("./README.md");
-    const body = markdown
+    const body = markdown;
 
-    res = new Response(toHtml({ CSS:'', body }), {
+    res = new Response(toHtml({ CSS: "", body }), {
       headers,
     });
   } catch (e) {
