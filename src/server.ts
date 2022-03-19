@@ -10,7 +10,7 @@ const ga = createReporter({
   id: Deno.env.get("GA_UA") || "UA-XXXXX-Y",
 });
 function isNetAddr(addr: Deno.Addr): addr is Deno.NetAddr {
-           return Object.hasOwn(addr, "hostname");
+     return Object.hasOwn(addr, "hostname");
 }
 
 const html = String.raw;
