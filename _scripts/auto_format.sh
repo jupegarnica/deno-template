@@ -2,7 +2,7 @@
 
 # This script is used to automatically format the source code.
 
-git stash save wip || echo 'No changes to stash.'
+git stash
 
 deno fmt
 
@@ -17,4 +17,4 @@ if [ -n "$FILES" ]; then
 
 fi
 
-git stash apply wip || echo 'ups. nothing to pop'
+git stash apply
