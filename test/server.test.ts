@@ -7,7 +7,7 @@ Deno.test({
   ignore: !Deno.env.get("TEST_SERVER"),
   async fn() {
     const res = await fetch("http://localhost:8080/");
-        const html = await res.text();
+    const html = await res.text();
     assertEquals(res.status, 200);
     assertEquals(html.length > 1000, true);
   },
