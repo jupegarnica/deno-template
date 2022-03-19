@@ -3,7 +3,7 @@
 # This script is used to automatically format the source code.
 
 echo "Formatting source code..."
-git stash
+git stash --include-untracked --all save "Formatting source code"
 
 deno fmt
 
