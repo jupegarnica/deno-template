@@ -9,9 +9,6 @@ deno fmt
 
 FILES=$(git diff  --name-only --diff-filter=ACMR "*.*")
 
-echo "Files to be formatted: $FILES"
-# if files are changed, commit them
-
 if [ -n "$FILES" ]; then
     echo "Committing changes..."
     export VR_HOOKS="false"
