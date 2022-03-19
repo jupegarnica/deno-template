@@ -65,3 +65,5 @@ await client.connectTLS(options);
 await client.close();
 
 export default client;
+
+const _ = 42;
