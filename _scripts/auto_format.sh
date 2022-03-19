@@ -2,6 +2,7 @@
 
 # This script is used to automatically format the source code.
 
+echo "Formatting source code..."
 git stash
 
 deno fmt
