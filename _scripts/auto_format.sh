@@ -5,9 +5,9 @@
 echo "Formatting source code..."
 git stash --include-untracked --all save "Formatting source code"
 
-deno fmt
+# deno fmt
 
-FILES=$(git diff  --name-only --diff-filter=ACMR "*.*")
+FILES=$(deno fmt)
 
 if [ -n "$FILES" ]; then
     echo "Committing changes..."
