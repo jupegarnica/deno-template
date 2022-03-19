@@ -16,7 +16,7 @@
   },
   "fmt": {
     "files": {
-      "exclude": []
+      "exclude": [".cache", ".git", "coverage", "node_modules/**", "vendor/**"]
     },
     "options": {
       "useTabs": false,
