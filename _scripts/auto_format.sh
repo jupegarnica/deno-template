@@ -2,9 +2,9 @@
 
 # This script is used to automatically format the source code.
 
-git stash || echo 'No changes to stash.'
+git stash save wip || echo 'No changes to stash.'
 
-deno tasks fmt || deno fmt
+deno fmt
 
 FILES=$(git diff --staged --name-only --diff-filter=ACMR "*.*")
 
@@ -17,4 +17,4 @@ if [ -n "$FILES" ]; then
 
 fi
 
-git stash pop || echo 'ups. nothing to pop'
+git stash apply wip || echo 'ups. nothing to pop'
