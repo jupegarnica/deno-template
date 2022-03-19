@@ -7,7 +7,7 @@ git stash
 
 deno fmt
 
-FILES=$(git diff --staged --name-only --diff-filter=ACMR "*.*")
+FILES=$(git diff  --name-only --diff-filter=ACMR "*.*")
 
 echo "Files to be formatted: $FILES"
 # if files are changed, commit them
