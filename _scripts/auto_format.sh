@@ -3,13 +3,11 @@
 # This script is used to automatically format the source code.
 
 echo "Formatting source code..."
-git stash --include-untracked --all
+git stash
 
-# deno fmt
+deno fmt
 
-FILES=$(deno fmt)
-
-
+FILES=$(git diff  --name-only --diff-filter=ACMR "*.*")
 
 if [ -n "$FILES" ]; then
     echo "Committing changes..."
