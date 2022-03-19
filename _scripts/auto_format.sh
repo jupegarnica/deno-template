@@ -17,4 +17,4 @@ if [ -n "$FILES" ]; then
 
 fi
 
-git stash pop
+git stash pop || exit 0
