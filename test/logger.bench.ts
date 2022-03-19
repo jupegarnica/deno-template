@@ -1,5 +1,4 @@
-
-import logger from "../src/services/logger.ts"
+import logger from "../src/services/logger.ts";
 
 import { stub } from "../dev_deps.ts";
 // import type { Stub } from "../dev_deps.ts";

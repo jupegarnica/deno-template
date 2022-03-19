@@ -1,6 +1,6 @@
 import { assertEquals } from "../dev_deps.ts";
 
-import logger, { console } from "../src/services/logger.ts"
+import logger, { console } from "../src/services/logger.ts";
 import { stub } from "../dev_deps.ts";
 import type { Stub } from "../dev_deps.ts";
 Deno.test({
