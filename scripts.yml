@@ -10,37 +10,25 @@ env:
   DENO_DIR: .cache
 
 scripts:
-  dev:
-    desc: Starts dev mode
-    cmd: deno task dev
+  dev: deno task dev
 
-  start:
-    desc: Starts  main
-    cmd: deno task start
+  start: deno task start
 
-  debug:
-    desc: Runs main script
-    cmd: deno task debug
+  debug: deno task debug
 
-  server:
-    desc: Starts deploy server
-    cmd: deno task server
+  server: deno task server
 
-  test:
-    desc: Runs the tests
-    cmd: deno task test-doc
+  test: deno task test-doc
 
-  test-ci:
-    desc: Runs the tests
-    cmd:
-      pll:
-        - timeout 5 vr server || exit 0
-        - sleep 1 && vr test
+  test-server:  deno task test-server
+      # pll:
+      #   - timeout 5 vr server || exit 0
+      #   - sleep 1 && vr test
     # gitHook: pre-push
 
+  bench: deno task bench
 
-  cache:
-    cmd: DENO_DIR=.cache deno cache --lock=lock.json --lock-write **/*.[jt]s
+  cache: DENO_DIR=.cache deno cache --lock=lock.json --lock-write **/*.[jt]s
 
   update:
     desc: Update dependencies ensuring pass tests
@@ -48,13 +36,9 @@ scripts:
       - deno run -A https://deno.land/x/udd/main.ts  "src/**/*.{ts,js,tsx,jsx, cjs, mjs}" deps.ts dev_deps.ts --test="vr test"
       - vr cache
 
-  lint:
-    desc: Runs lint
-    cmd: deno lint --ignore=coverage,.cache
+  lint: deno lint --ignore=coverage,.cache
 
-  fmt:
-    desc: Runs format
-    cmd: deno fmt --ignore=coverage,.cache
+  fmt: deno fmt --ignore=coverage,.cache
 
   docs:
     - echo "visit https://doc.deno.land/builtin/stable"

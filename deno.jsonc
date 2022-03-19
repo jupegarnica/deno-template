@@ -36,11 +36,12 @@
     "test": "deno test -A --ignore=.cache --no-prompt",
     "test-doc": "deno task test -- --doc",
     "test-watch": "deno task test -- --watch",
-    "test-ci": "deno task server-timeout & sleep 1 && deno task test",
+    "test-server": "deno task server-timeout & sleep 1 && TEST_SERVER=1  deno task test -- --filter=[server]",
     "build-npm": "deno run -A _scripts/build_npm.ts",
     "ci": "deno lint && deno fmt --check && deno task test-ci",
     "release": "sh _scripts/release.sh",
-    "tag": "sh _scripts/tag.sh"
+    "tag": "sh _scripts/tag.sh",
+    "bench": "deno bench --allow-env=NO-COLOR,LOG_LEVEL --no-check"
   }
   // "importMap":"vendor/import_map.json"
 }
