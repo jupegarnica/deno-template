@@ -9,7 +9,7 @@ git stash --include-untracked --all
 
 FILES=$(deno fmt)
 
-  read -p "Do you want to apply the changes? [y/n] " -n 1 -r
+
 
 if [ -n "$FILES" ]; then
     echo "Committing changes..."
