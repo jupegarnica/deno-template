@@ -96,14 +96,8 @@ scripts:
 
 
   commitlint:
-    # cmd: echo --- ${GIT_ARGS} ---
     cmd: deno run --allow-read="./.git" _scripts/commitlint.ts
     gitHook: commit-msg
-  # tag:
-  #   cmd: deno run -A --unstable https://deno.land/x/release/release.ts patch
-  tag:
-    desc: Create tag
-    cmd: deno task tag
-  release:
-    desc: Create release
-    cmd: deno task release
+
+  tag: deno task tag
+  release: deno task release
