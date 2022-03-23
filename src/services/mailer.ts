@@ -1,7 +1,7 @@
 import {
   // quotedPrintableEncode,
   SmtpClient,
-} from "https://deno.land/x/denomailer@0.10.0/mod.ts";
+} from "https://deno.land/x/denomailer@0.11.0/mod.ts";
 
 const client = new SmtpClient();
 
