@@ -1,5 +1,4 @@
-name: update-deno-dependencies
-# https://gist.github.com/kawarimidoll/2f43533e5fbe319f4bc9bb255c73a02d
+name: update-deps
 
 on:
   workflow_dispatch:
@@ -19,18 +18,22 @@ jobs:
       VR_HOOKS: "false"
     steps:
       - uses: actions/checkout@master
-      - uses: denoland/setup-deno@v1
-      - uses: jurassiscripts/setup-velociraptor@v1
-      - run: vr update
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: "chore(deps): update deno dependencies"
-          title: Update Deno Dependencies
-          body: |
-            Automated updates by [deno-udd](https://github.com/hayd/deno-udd)
-            and [create-pull-request](https://github.com/peter-evans/create-pull-request)
-            GitHub action
-          branch: update-deno-dependencies
-          author: GitHub <noreply@github.com>
-          delete-branch: true
+      - name: Deps Bot
+        uses: denosaurs/depsbot@v0.8.0
+
+# https://gist.github.com/kawarimidoll/2f43533e5fbe319f4bc9bb255c73a02d
+      # - uses: denoland/setup-deno@v1
+      # - uses: jurassiscripts/setup-velociraptor@v1
+      # - run: vr update
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     commit-message: "chore(deps): update deno dependencies"
+      #     title: Update Deno Dependencies
+      #     body: |
+      #       Automated updates by [deno-udd](https://github.com/hayd/deno-udd)
+      #       and [create-pull-request](https://github.com/peter-evans/create-pull-request)
+      #       GitHub action
+      #     branch: update-deno-dependencies
+      #     author: GitHub <noreply@github.com>
+      #     delete-branch: true
