@@ -8,7 +8,6 @@ const port = Number(Deno.env.get("SMTP_PORT") || "465");
 const username = Deno.env.get("SMTP_USERNAME") || "apikey";
 const password = Deno.env.get("SMTP_PASSWORD") || "";
 
-
 const client = new SMTPClient({
   connection: {
     hostname,
