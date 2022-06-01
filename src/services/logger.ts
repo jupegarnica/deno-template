@@ -1,4 +1,4 @@
-import logger, { console } from "https://deno.land/x/garn_logger@0.0.16/mod.ts";
+import logger, { console } from "https://deno.land/x/garn_logger@0.0.21/mod.ts";
 
 logger.setFilter(Deno.env.get("LOG_LEVEL") || "debug");
 
