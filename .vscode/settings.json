@@ -12,7 +12,7 @@
     "https://raw.githubusercontent.com": true,
     "https://cdn.skypack.dev": true,
     "https://esm.sh": true
-  },
+  }
   // "deno.enablePaths": [
   //   "."
   // ],

@@ -11,7 +11,7 @@
 
     // build
     "build-npm": "deno run -A https://deno.land/x/dnt_prompt/main.ts",
-    "publish-npm":"deno task build-npm && npm publish",
+    "publish-npm": "deno task build-npm && npm publish",
 
     // release
     "version": "deno run  -A https://deno.land/x/version/index.ts",
