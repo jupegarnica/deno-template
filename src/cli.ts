@@ -1,8 +1,9 @@
-import { parse } from "https://deno.land/std@0.141.0/flags/mod.ts";
+import { parse } from "https://deno.land/std@0.158.0/flags/mod.ts";
 
 const parsedArgs = parse(Deno.args);
 console.dir(parsedArgs);
 export default 42;
+
 // import { opn } from "https://denopkg.com/hashrock/deno-opn/opn.ts";
 
 // const args = Deno.args.join(" ");
