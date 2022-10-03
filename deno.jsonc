@@ -25,7 +25,7 @@
     "bench": "deno bench -A --unstable --ignore=.cache --no-prompt",
 
     // lint
-    "ci": "deno lint && deno fmt --check && deno task test-ci",
+    "ci": "deno lint && deno fmt --check && deno task test",
 
     // chore
     "cache": "DENO_DIR=.cache deno cache --lock=lock.json --lock-write src/deps.ts test/deps.ts",
