@@ -11,24 +11,25 @@
 
     // build and release
     "version": "deno run  -A https://deno.land/x/version/index.ts",
-    "build:npm": "deno run -A https://deno.land/x/dnt_prompt/main.ts",
+    "build-npm": "deno run -A https://deno.land/x/dnt_prompt/main.ts",
     "release": "deno task version patch && git push --tags origin main",
 
     // test
-    "test": "deno test -A --ignore=.cache --no-prompt",
-    "test-doc": "deno task test -- --doc",
-    "test-watch": "deno task test -- --watch",
+    "test": "deno test -A --ignore=.cache --no-prompt --coverage=.coverage",
+    "test-doc": "deno task test --doc",
+    "test-cov": "deno task test && deno coverage .coverage",
+    "test-watch": "deno task test --watch test",
     "test-server": "deno task server-timeout & sleep 1 && TEST_SERVER=1  deno task test -- --filter=[server]",
 
     // bench
-    "bench": "deno bench -A",
+    "bench": "deno bench -A --unstable --ignore=.cache --no-prompt",
 
     // lint
     "ci": "deno lint && deno fmt --check && deno task test-ci",
 
     // chore
-    "cache":"DENO_DIR=.cache deno cache --lock=lock.json --lock-write **/*.{ts,js,tsx,jsx, cjs, mjs}",
-    "udd": "deno run -A https://deno.land/x/udd/main.ts  'src/**/*.{ts,js,tsx,jsx, cjs, mjs}' deps.ts dev_deps.ts --test='deno task test'"
+    "cache":"DENO_DIR=.cache deno cache --lock=lock.json --lock-write src/deps.ts test/deps.ts",
+    "udd": "deno run -A https://deno.land/x/udd/main.ts --test='deno task test'  'src/**/*.ts' 'test/**/*.ts'"
   },
   // curl -O https://config.deno.dev/deno.jsonc
   "lint": {

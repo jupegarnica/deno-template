@@ -1,5 +1,6 @@
-import { ConnInfo, serve } from "../deps.ts";
+import { ConnInfo, serve } from "./deps.ts";
 import { createReporter } from "https://deno.land/x/g_a@0.1.2/mod.ts";
+
 const port = 8080;
 
 if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
