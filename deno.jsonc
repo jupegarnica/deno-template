@@ -28,7 +28,7 @@
     "ci": "deno lint && deno fmt --check && deno task test-ci",
 
     // chore
-    "cache":"DENO_DIR=.cache deno cache --lock=lock.json --lock-write src/deps.ts test/deps.ts",
+    "cache": "DENO_DIR=.cache deno cache --lock=lock.json --lock-write src/deps.ts test/deps.ts",
     "udd": "deno run -A https://deno.land/x/udd/main.ts --test='deno task test'  'src/**/*.ts' 'test/**/*.ts'"
   },
   // curl -O https://config.deno.dev/deno.jsonc

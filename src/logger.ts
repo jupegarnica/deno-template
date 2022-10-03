@@ -1,16 +1,18 @@
-import logger, { formatToAnsiColors } from "https://deno.land/x/garn_logger@0.0.21/mod.ts";
+import logger, {
+  formatToAnsiColors,
+} from "https://deno.land/x/garn_logger@0.0.21/mod.ts";
 
 logger.setFilter(Deno.env.get("LOG_LEVEL") || "debug");
 logger.use(
-    formatToAnsiColors({
-        depth: 3,
-        timestamp: 'HH:mm:ss',
-        multiline: true,
-        showScope: true,
-        showMethod: true,
-        useColor: true,
-    })
-)
+  formatToAnsiColors({
+    depth: 3,
+    timestamp: "HH:mm:ss",
+    multiline: true,
+    showScope: true,
+    showMethod: true,
+    useColor: true,
+  }),
+);
 
 // logger.debug("debug");
 // logger.info("info");
@@ -36,6 +38,5 @@ logger.use(
 // logger.gray("gray");
 // logger.bgBlack("bgBlack");
 // logger.bgRed("bgRed");
-
 
 export default logger;
