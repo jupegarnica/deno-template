@@ -1,84 +1,31 @@
-# allow:
-#   - write
-#   - read
-#   - net
-#   - env
-
-# envFile:
-#   - .env
-env:
-  DENO_DIR: .cache
 
 scripts:
-  dev: deno task dev
 
-  start: deno task start
 
-  debug: deno task debug
-
-  server: deno task server
-
-  test: deno task test-doc
-
-  test-server:  deno task test-server
-      # pll:
-      #   - timeout 5 vr server || exit 0
-      #   - sleep 1 && vr test
-    # gitHook: pre-push
-
-  bench: deno task bench
-
-  cache: DENO_DIR=.cache deno cache --lock=lock.json --lock-write **/*.[jt]s
-
-  update:
-    desc: Update dependencies ensuring pass tests
-    cmd:
-      - deno run -A https://deno.land/x/udd/main.ts  "src/**/*.{ts,js,tsx,jsx, cjs, mjs}" deps.ts dev_deps.ts --test="vr test"
-      # - vr cache
-
-  lint: deno lint --ignore=coverage,.cache
-
-  fmt: deno fmt --ignore=coverage,.cache
 
   docs:
     - echo "visit https://doc.deno.land/builtin/stable"
     - google-chrome https://doc.deno.land/builtin/stable || sh $BROWSER https://doc.deno.land/builtin/stable
 
-  build_npm:
-    desc: |
-     Builds the package for npm
-     docs: https://deno.land/x/dnt
-    cmd: deno task build-npm
+
 
   auto-format:
     cmd: sh _scripts/auto_format.sh
-    gitHook: post-commit
-
+    # gitHook: post-commit
 
   cov:
     desc: Shows uncovered lists
     cmd:
-      - vr test --coverage=coverage
-      - deno coverage --unstable coverage --lcov > coverage/coverage.lcov
+      - deno task test --coverage=.coverage
+      - deno coverage --unstable .coverage --lcov > .coverage/coverage.lcov
       - which genhtml || sudo apt install lcov
-      - genhtml -o coverage/html coverage/coverage.lcov
+      - genhtml -o .coverage/html .coverage/coverage.lcov
       - deno run -A https://deno.land/std/http/file_server.ts coverage/html
-
-  ci:
-    desc: Runs lint, check format and test
-    cmd:
-      - vr lint
-      - vr fmt --check
-      - vr test
-    gitHook: pre-push
 
 
   commitlint:
     cmd: deno run --allow-read="./.git" _scripts/commitlint.ts
-    gitHook: commit-msg
-
-  tag: deno task tag
-  release: deno task release
+    # gitHook: commit-msg
   # pre-commit:
   #   desc: Lints and formats staged files
   #   cmd: |
@@ -87,7 +34,7 @@ scripts:
   #         echo "$FILES" | xargs deno lint
   #         echo "$FILES" | xargs deno fmt
   #         echo "$FILES" > .stagedFiles
-  #   gitHook: pre-commit
+    # gitHook: pre-commit
 
   # post-commit:
   #   desc: Commit formatted files
@@ -100,4 +47,4 @@ scripts:
   #         [ -z "$FILES" ] && exit 0
   #         echo "$FILES" | xargs git add &&
   #         git commit -m "format: apply auto format"
-  #   gitHook: post-commit
+    # gitHook: post-commit

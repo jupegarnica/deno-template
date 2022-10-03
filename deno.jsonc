@@ -1,11 +1,46 @@
 {
-  // curl -O https://config.deno.dev/deno.jsonc
+  "tasks": {
+    // common
+    "dev": "deno run -A --watch src/main.ts",
+    "start": "deno run src/main.ts",
+    "debug": "deno run --inspect-brk src/main.ts",
+
+    // server
+    "server": "deno run --allow-net --allow-env --allow-read=.  src/server.ts",
+    "server-timeout": "timeout 5 deno task server || exit 0",
+
+    // build
+    "build-npm": "deno run -A https://deno.land/x/dnt_prompt/main.ts",
+    "publish-npm":"deno task build-npm && npm publish",
+
+    // release
+    "version": "deno run  -A https://deno.land/x/version/index.ts",
+    "release": "deno task version patch && git push --tags origin main",
+
+    // test
+    "test": "deno test -A --ignore=.cache --no-prompt --coverage=.coverage",
+    "test-doc": "deno task test --doc",
+    "test-cov": "deno task test && deno coverage .coverage",
+    "test-watch": "deno task test --watch test",
+    "test-server": "deno task server-timeout & sleep 1 && TEST_SERVER=1  deno task test -- --filter=[server]",
+
+    // bench
+    "bench": "deno bench -A --unstable --ignore=.cache --no-prompt",
+
+    // lint
+    "ci": "deno lint && deno fmt --check && deno task test",
+
+    // chore
+    "cache": "DENO_DIR=.cache deno cache --lock=lock.json --lock-write src/deps.ts test/deps.ts",
+    "udd": "deno run -A https://deno.land/x/udd/main.ts --test='deno task test'  'src/**/*.ts' 'test/**/*.ts'"
+  },
   "lint": {
     "files": {
       "exclude": [
         ".cache",
         ".git",
-        "coverage",
+        ".npm",
+        ".coverage",
         "node_modules/**",
         "vendor/**"
       ]
@@ -16,32 +51,22 @@
   },
   "fmt": {
     "files": {
-      "exclude": [".cache", ".git", "coverage", "node_modules/**", "vendor/**"]
+      "exclude": [
+        ".cache",
+        ".git",
+        ".coverage",
+        "node_modules/**",
+        "vendor/**",
+        ".npm"
+      ]
     },
     "options": {
       "useTabs": false,
-      "lineWidth": 80,
-      "indentWidth": 2,
+      // "lineWidth": 80,
+      // "indentWidth": 2,
       "singleQuote": false,
       "proseWrap": "always"
     }
-  },
-  "tasks": {
-    "dev": "deno run -A --watch --no-check src/main.ts",
-    "start": "deno run src/main.ts",
-    "debug": "deno run --inspect-brk src/main.ts",
-    "server": "deno run --allow-net --allow-env --allow-read=.  src/server.ts",
-    "server-timeout": "timeout 5 deno task server || exit 0",
-    "install-hooks": "vr",
-    "test": "deno test -A --ignore=.cache --no-prompt",
-    "test-doc": "deno task test -- --doc",
-    "test-watch": "deno task test -- --watch",
-    "test-server": "deno task server-timeout & sleep 1 && TEST_SERVER=1  deno task test -- --filter=[server]",
-    "build-npm": "deno run -A _scripts/build_npm.ts",
-    "ci": "deno lint && deno fmt --check && deno task test-ci",
-    "release": "sh _scripts/release.sh",
-    "tag": "sh _scripts/tag.sh",
-    "bench": "deno bench --allow-env=NO-COLOR,LOG_LEVEL --no-check"
   }
   // "importMap":"vendor/import_map.json"
 }
