@@ -10,23 +10,6 @@ env:
   DENO_DIR: .cache
 
 scripts:
-  dev: deno task dev
-
-  start: deno task start
-
-  debug: deno task debug
-
-  server: deno task server
-
-  test: deno task test-doc
-
-  test-server:  deno task test-server
-      # pll:
-      #   - timeout 5 vr server || exit 0
-      #   - sleep 1 && vr test
-    # gitHook: pre-push
-
-  bench: deno task bench
 
   cache: DENO_DIR=.cache deno cache --lock=lock.json --lock-write **/*.[jt]s
 
@@ -52,7 +35,7 @@ scripts:
 
   auto-format:
     cmd: sh _scripts/auto_format.sh
-    gitHook: post-commit
+    # gitHook: post-commit
 
 
   cov:
@@ -70,12 +53,12 @@ scripts:
       - vr lint
       - vr fmt --check
       - vr test
-    gitHook: pre-push
+    # gitHook: pre-push
 
 
   commitlint:
     cmd: deno run --allow-read="./.git" _scripts/commitlint.ts
-    gitHook: commit-msg
+    # gitHook: commit-msg
 
   tag: deno task tag
   release: deno task release
@@ -87,7 +70,7 @@ scripts:
   #         echo "$FILES" | xargs deno lint
   #         echo "$FILES" | xargs deno fmt
   #         echo "$FILES" > .stagedFiles
-  #   gitHook: pre-commit
+    # gitHook: pre-commit
 
   # post-commit:
   #   desc: Commit formatted files
@@ -100,4 +83,4 @@ scripts:
   #         [ -z "$FILES" ] && exit 0
   #         echo "$FILES" | xargs git add &&
   #         git commit -m "format: apply auto format"
-  #   gitHook: post-commit
+    # gitHook: post-commit
