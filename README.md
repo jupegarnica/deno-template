@@ -6,7 +6,7 @@ My deno template for rapid development.
 
 Run `deno task` o see `deno.jsonc`.
 
-```
+```bash
 - bench
     deno bench -A --unstable --ignore=.cache --no-prompt
 - build-npm
@@ -47,7 +47,7 @@ Run `deno task` o see `deno.jsonc`.
 
 ## Files
 
-```
+```bash
 .
 ├── .vscode
 │   └── settings.json
