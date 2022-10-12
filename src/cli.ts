@@ -1,4 +1,8 @@
-import { Cell, Row, Table } from "https://deno.land/x/cliffy@v0.25.2/table/mod.ts";
+import {
+  Cell,
+  Row,
+  Table,
+} from "https://deno.land/x/cliffy@v0.25.2/table/mod.ts";
 
 new Table()
   .header(Row.from(["Name", "Date", "City", "Country"]).border(true))
@@ -16,8 +20,7 @@ new Table()
     ["Allegra Cleveland", "Apr 16, 2020", "Avernas-le-Bauduin", "Samoa"],
     ["Aretha Gamble", "Feb 22, 2021", "Honolulu", "Georgia"],
   ])
-  .render();
-// import {
+  .render(); // import {
 //     Checkbox,
 //     Confirm,
 //     Number,
@@ -54,4 +57,3 @@ new Table()
 //   }]);
 
 //   console.log(result);
-;
