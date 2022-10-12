@@ -6,8 +6,8 @@ import {
 
 new Table()
      .header(Row.from(["Name", "Date", "City", "Country"]).border(true))
-    .body([
-    [
+          .body([
+       [
       "Baxter Herman",
       new Cell("Oct 1, 2020").border(true),
       "Row 1 Column 3",

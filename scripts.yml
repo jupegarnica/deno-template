@@ -39,6 +39,7 @@ scripts:
     gitHook: commit-msg
     # gitHook: commit-msg
   lint_fmt:
+    gitHook: pre-commit
     cmd: |
       set -e
 
