@@ -8,7 +8,7 @@
     // server
     "server": "deno run --allow-net --allow-env --allow-read=.  src/server.ts",
     "server-timeout": "timeout 5 deno task server || exit 0",
-      "json-server": "npx json-server db.json",
+    "json-server": "npx json-server db.json",
     // "json-server": "deno run -A --unstable npm:json-server db.json",
 
     // build
