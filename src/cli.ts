@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/x/cliffy@v0.25.2/table/mod.ts";
 
 new Table()
-  .header(Row.from(["Name", "Date", "City", "Country"]).border(true))
+   .header(Row.from(["Name", "Date", "City", "Country"]).border(true))
   .body([
     [
       "Baxter Herman",

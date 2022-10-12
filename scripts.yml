@@ -38,8 +38,16 @@ scripts:
       npx commitlint -x @commitlint/config-conventional -e "./${GIT_ARGS[1]}"
     gitHook: commit-msg
     # gitHook: commit-msg
+  lint_fmt:
+    cmd: |
+      set -e
+
+      FILES=$(git diff --staged --name-only --diff-filter=ACMR)
+      echo "$FILES" | grep '[jt]sx\?$' | xargs --no-run-if-empty deno lint
+      echo "$FILES" | grep '\([jt]sx\?\|jsonc\?\|md\)$' | xargs --no-run-if-empty deno fmt
+
   # pre-commit:
-  #   desc: Lints and formats staged files
+  #   desc: formats staged files
   #   cmd: |
   #     FILES=$(git diff --staged --name-only --diff-filter=ACMR "*.*ts" "*.*js")
   #         [ -z "$FILES" ] && exit 0
