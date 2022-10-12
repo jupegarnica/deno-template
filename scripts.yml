@@ -7,12 +7,6 @@ scripts:
     - echo "visit https://doc.deno.land/builtin/stable"
     - google-chrome https://doc.deno.land/builtin/stable || sh $BROWSER https://doc.deno.land/builtin/stable
 
-
-
-  auto-format:
-    cmd: sh _scripts/auto_format.sh
-    # gitHook: post-commit
-
   cov:
     desc: Shows uncovered lists
     cmd:
@@ -22,16 +16,12 @@ scripts:
       - genhtml -o .coverage/html .coverage/coverage.lcov
       - deno run -A https://deno.land/std/http/file_server.ts coverage/html
 
-
-  # commitlint:
-  #   cmd: deno run --allow-read="./.git" _scripts/commitlint.ts
-
-
   commitlint:
     # dependencies: commitlint and @commitlint/config-conventional
     # yarn global add commitlint @commitlint/config-conventional
     desc: Checks commit messages format with commitlint
     cmd: |
+      # deno run --allow-read="./.git" _scripts/commitlint.ts
       # echo "${PWD}/${GIT_ARGS[1]}"
       # deno run -A --unstable npm:commitlint -e "${PWD}/${GIT_ARGS[1]}"
       # -x @commitlint/config-conventional
