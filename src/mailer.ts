@@ -1,7 +1,7 @@
 import {
   // quotedPrintableEncode,
   SMTPClient,
-} from "https://deno.land/x/denomailer@1.5.0/mod.ts";
+} from "https://deno.land/x/denomailer@1.5.2/mod.ts";
 
 const hostname = Deno.env.get("SMTP_HOSTNAME") || "smtp.sendgrid.net";
 const port = Number(Deno.env.get("SMTP_PORT") || "465");
