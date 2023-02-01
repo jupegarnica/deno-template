@@ -2,7 +2,7 @@ import {
   Cell,
   Row,
   Table,
-} from "https://deno.land/x/cliffy@v0.25.4/table/mod.ts";
+} from "https://deno.land/x/cliffy@v0.25.7/table/mod.ts";
 
 new Table()
   .header(Row.from(["Name", "Date", "City", "Country"]).border(true))
@@ -25,7 +25,7 @@ new Table()
 //     Confirm,
 //     Number,
 //     prompt,
-//   } from "https://deno.land/x/cliffy@v0.25.4/prompt/mod.ts";
+//   } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
 
 //   const result = await prompt([{
 //     name: "animals",
